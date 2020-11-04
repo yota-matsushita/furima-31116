@@ -7,11 +7,11 @@
 | email              | string | null: false |
 | encrypted_password | string | null: false |
 | nickname           | string | null: false |
-| last-name          | string | null: false |
-| first-name         | string | null: false |
-| last-name-kana     | string | null: false |
-| first-name-kana    | string | null: false |
-| birth-date         | date   | null: false |
+| lastname           | string | null: false |
+| firstname          | string | null: false |
+| lastname_kana      | string | null: false |
+| firstname_kana     | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
 
@@ -43,7 +43,7 @@
 | Column | Type       | Options                        |
 |--------|------------|--------------------------------|
 | user   | references | null: false, foreign_key: true |
-| item   | text       | null: false                    |
+| item   | text       | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :user
@@ -54,7 +54,7 @@
 
 | Column        | Type       | Option                         |
 |---------------|------------|--------------------------------|
-| user          | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 | postal_code   | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
