@@ -2,70 +2,64 @@
 
 ## users
 
-| Column          | Type    | Options     |
-|-----------------|---------|-------------|
-| email           | string  | null: false |
-| password        | string  | null: false |
-| nickname        | string  | null: false |
-| last-name       | string  | null: false |
-| first-name      | string  | null: false |
-| last-name-kana  | string  | null: false |
-| first-name-kana | string  | null: false |
-| birth-date      | integer | null: false |
+| Column             | Type   | Options     |
+|--------------------|--------|-------------|
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| nickname           | string | null: false |
+| last-name          | string | null: false |
+| first-name         | string | null: false |
+| last-name-kana     | string | null: false |
+| first-name-kana    | string | null: false |
+| birth-date         | date   | null: false |
 
 ### Association
 
-- has_many :items
+- has_one :item
 - has_many :orders
 
 ## items テーブル
 
-| Column                   | Type           | Options                        |
-|--------------------------|----------------|--------------------------------|
-| user                     | references     | null: false, foreign_key: true |
-| item-name                | text           | null: false                    |
-| item-info                | text           | null: false                    |
-| item-category            | text           | null: false                    |
-| item-sales-status        | text           | null: false                    |
-| item-shipping-fee-status | text           | null: false                    |
-| item-scheduled-delivery  | text           | null: false                    |
-| user                     | string         | null: false                    |
-| item-price               | integer        | null: false                    |
-| add-tax-price            | integer        | null: false                    |
-| profit                   | integer        | null: false                    |
+| Column              | Type       | Options                        |
+|---------------------|------------|--------------------------------|
+| user                | references | null: false, foreign_key: true |
+| name                | text       | null: false                    |
+| info                | text       | null: false                    |
+| category            | integer    | null: false                    |
+| sales-status        | integer    | null: false                    |
+| shipping-fee-status | integer    | null: false                    |
+| scheduled-delivery  | integer    | null: false                    |
+| price               | integer    | null: false                    |
 
 ### Association
 
-- belongs_to :items
-- has_one :address
+- belongs_to :users
 - has_one :orders
 
 ## orders テーブル
 
 | Column | Type       | Options                        |
 |--------|------------|--------------------------------|
-| user   | references | null: false, foreign_key: true |
-| date   | integer    | null: false                    |
-| item   | text       | null: false                    |
+| date   | references | null: false                    |
+| item   | references | null: false                    |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## addresses テーブル
 
-| Column       | Type    | Option      |
-|--------------|---------|-------------|
-| postal-code  | integer | null: false |
-| prefecture   | text    | null: false |
-| city         | text    | null: false |
-| address      | text    | null: false |
-| building     | text    | null: false |
-| phone-number | integer | null: false |
+| Column        | Type     | Option      |
+|---------------|----------|-------------|
+| postal-code   | string   | null: false |
+| prefecture_id | integer  | null: false |
+| city          | text     | null: false |
+| address       | text     | null: false |
+| building      | text     |             |
+| phone-number  | string   | null: false |
 
 ### Association
 
-- belongs_to :items
-- belongs_to :address
+- belongs_to :order
