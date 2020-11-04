@@ -15,7 +15,7 @@
 
 ### Association
 
-- has_one :item
+- has_many :items
 - has_many :orders
 
 ## items テーブル
@@ -23,7 +23,7 @@
 | Column              | Type       | Options                        |
 |---------------------|------------|--------------------------------|
 | user                | references | null: false, foreign_key: true |
-| name                | text       | null: false                    |
+| name                | string     | null: false                    |
 | info                | text       | null: false                    |
 | category            | integer    | null: false                    |
 | sales-status        | integer    | null: false                    |
@@ -33,16 +33,16 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :orders
+- belongs_to :user
+- has_one :order
 
 ## orders テーブル
 
 | Column | Type       | Options                        |
 |--------|------------|--------------------------------|
-| date   | references | null: false                    |
-| item   | references | null: false                    |
-
+| user   | references | null: false, foreign_key: true |
+| date   | integer    | null: false                    |
+| item   | text       | null: false                    |
 ### Association
 
 - belongs_to :user
@@ -51,14 +51,15 @@
 
 ## addresses テーブル
 
-| Column        | Type     | Option      |
-|---------------|----------|-------------|
-| postal-code   | string   | null: false |
-| prefecture_id | integer  | null: false |
-| city          | text     | null: false |
-| address       | text     | null: false |
-| building      | text     |             |
-| phone-number  | string   | null: false |
+| Column        | Type       | Option                         |
+|---------------|------------|--------------------------------|
+| user          | references | null: false, foreign_key: true |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | integer    | null: false                    |
 
 ### Association
 
