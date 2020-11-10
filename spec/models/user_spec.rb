@@ -41,14 +41,14 @@ describe User, type: :model do
       end
       it 'passwordが5文字以下であれば登録できない' do
         @user.password = '12345'
-        @user.encrypted_password = '12345'
+        @user.password_confirmation = '12345'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordが半角英数字混合でなければ登録できない' do
-        @user.password = 'aaaaaaa'
+        @user.password = 'aaaaaaa', '1234567'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Encrypted password is invalid')
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordとpassword_confirmationが不一致では登録できないこと' do
         @user.password = '123456'
