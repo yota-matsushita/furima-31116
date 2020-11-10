@@ -1,4 +1,10 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category_id
+  belongs_to_active_hash :sales_status_id
+  belongs_to_active_hash :prefecture_id
+  belongs_to_active_hash :shipping_fee_status_id
+  belongs_to_active_hash :scheduled_delivery_id
   belongs_to :user
   has_one :order
   has_one_attached :image
