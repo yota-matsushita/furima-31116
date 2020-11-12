@@ -13,6 +13,7 @@ class Item < ApplicationRecord
     validates :name
     validates :info
     validates :image
+    validates :price, numericality: { greater_than: 299, less_than: 10_000_000 }
   end
 
   with_options numericality: { other_than: 1 } do
@@ -22,7 +23,4 @@ class Item < ApplicationRecord
     validates :shipping_fee_status_id
     validates :scheduled_delivery_id
   end
-
-  validates :price, numericality: { greater_than: 299, less_than: 10_000_000 },
-                    presence: true
 end
