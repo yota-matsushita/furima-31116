@@ -59,9 +59,9 @@ describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格の範囲が、¥300〜¥9,999,999の間であること' do
-        @item.price = '1'
+        @item.price = 1, 10000000 
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than 299')
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '販売価格は半角数字のみ保存可能であること' do
         @item.price = 'a'
