@@ -10,10 +10,9 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :user
     validates :name
     validates :info
-    validates :price
+    validates :image
   end
 
   with_options numericality: { other_than: 1 } do
@@ -23,4 +22,7 @@ class Item < ApplicationRecord
     validates :shipping_fee_status_id
     validates :scheduled_delivery_id
   end
+
+  validates :price, numericality: { greater_than: 299, less_than: 10_000_000 },
+                    presence: true
 end
