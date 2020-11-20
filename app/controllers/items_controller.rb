@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     if current_user.id == @item.user_id && @item.order.blank?
       redirect_to root_path unless current_user == @item.user
     else
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   def destroy
     current_user == @item.user
     @item.destroy
-    redirect_to root_path 
+    redirect_to root_path
   end
 
   private
